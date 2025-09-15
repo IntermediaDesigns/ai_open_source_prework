@@ -354,6 +354,9 @@
     drawWorld();
     drawOtherPlayers(); // Draw other players first (behind me)
     drawMe(); // Draw me on top
+
+    // Update minimap to show current positions
+    updateMinimap();
   }
 
   function startRenderLoop() {
@@ -563,10 +566,15 @@
     chatInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         const message = chatInput.value.trim();
-        if (message && ws && ws.readyState === WebSocket.OPEN) {
-          // Send chat message to server
-          const chatMsg = { action: "chat", message: message };
-          ws.send(JSON.stringify(chatMsg));
+        if (message) {
+          // Display message locally immediately
+          addChatMessage("player", message, state.me.username);
+
+          // Send chat message to server if connected
+          if (ws && ws.readyState === WebSocket.OPEN) {
+            const chatMsg = { action: "chat", message: message };
+            ws.send(JSON.stringify(chatMsg));
+          }
           chatInput.value = "";
         }
       }
