@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MMO Client - World Map</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="map-canvas" aria-label="World map canvas" role="img"></canvas>
+
+    <!-- UI Overlay -->
+    <div id="ui-overlay">
+      <div id="player-count">Players: 1</div>
+      <div id="connection-status">Connecting...</div>
+    </div>
+
+    <!-- Mini-map -->
+    <div id="minimap-container">
+      <canvas id="minimap" width="200" height="200"></canvas>
+    </div>
+
+    <!-- Chat System -->
+    <div id="chat-container">
+      <div id="chat-messages"></div>
+      <div id="chat-input-container">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Type a message..."
+          maxlength="100"
+        />
+      </div>
+    </div>
+
+    <script src="main.js" defer></script>
+  </body>
+</html>
